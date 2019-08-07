@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+.toolbox/core/run make -s .toolbox/tools/k6/k6 -- $@

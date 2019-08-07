@@ -1,0 +1,12 @@
+.k6.docker:
+  extends: .docker.dev
+  stage: test
+  image: aroq/testline:0.1.4
+  script:
+    - $TOOLBOX_DIR/run ${TOOLS_DIR}/k6/k6 ${TEST_NAME}
+
+.k6.shell:
+  extends: .shell.dev
+  stage: test
+  script:
+    - $TOOLBOX_DIR/run make -s ${TOOLS_DIR}/k6/k6 ${TEST_NAME}

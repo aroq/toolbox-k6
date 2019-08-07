@@ -1,0 +1,64 @@
+#!/usr/bin/env variant
+# vi: ft=yaml
+
+import: github.com/aroq/variant-lib?ref=v0.5.9//tasks.yaml
+# import: .tasks.yaml
+
+bindParamsFromEnv: true
+autoenv: true
+
+parameters:
+- name: K6_HOSTNAME
+  default: www.google.com
+- name: K6_VUS
+  default: ""
+- name: K6_DURATION
+  default: ""
+- name: K6_ITERATIONS
+  default: ""
+- name: K6_NO_USAGE_REPORT
+  default: ""
+- name: K6_NO_THRESHOLDS
+  default: ""
+- name: K6_MAX_REDIRECTS
+  default: ""
+- name: K6_BATCH
+  default: ""
+- name: K6_BATCH_PER_HOST
+  default: ""
+- name: K6_NO_CONNECTION_REUSE
+  default: ""
+- name: K6_NO_VU_CONNECTION_REUSE
+  default: ""
+- name: K6_RPS
+  default: ""
+- name: K6_STAGES
+  default: ""
+- name: K6_THROW
+  default: ""
+- name: K6_BLACKLIST_IPS
+  default: ""
+- name: K6_SUMMARY_TREND_STATS
+  default: ""
+- name: K6_USER_AGENT
+  default: ""
+- name: K6_HTTP_DEBUG
+  default: ""
+- name: K6_VUS_MAX
+  default: ""
+- name: K6_SYSTEM_TAGS
+  default: ""
+- name: K6_SETUP_TIMEOUT
+  default: ""
+- name: K6_TEARDOWN_TIMEOUT
+  default: ""
+- name: K6_DISCARD_RESPONSE_BODIES
+  default: ""
+- name: K6_MIN_ITERATION_DURATION
+  default: ""
+
+steps:
+- task: tools.k6.exec
+  arguments:
+    cmd: run .toolbox/tools/k6/scripts/smoke.js
+

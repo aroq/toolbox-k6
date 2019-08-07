@@ -1,0 +1,42 @@
+params:
+  jobs:
+    k6:
+      params:
+        context:
+          logRotatorNumToKeep: 20
+        parameters:
+          K6_VUS: ""
+          K6_DURATION: ""
+          K6_ITERATIONS: ""
+          K6_NO_USAGE_REPORT: ""
+          K6_NO_THRESHOLDS: ""
+          K6_MAX_REDIRECTS: ""
+          K6_BATCH: ""
+          K6_BATCH_PER_HOST: ""
+          K6_NO_CONNECTION_REUSE: ""
+          K6_NO_VU_CONNECTION_REUSE: ""
+          K6_RPS: ""
+          K6_STAGES: ""
+          K6_THROW: ""
+          K6_BLACKLIST_IPS: ""
+          K6_SUMMARY_TREND_STATS: ""
+          K6_USER_AGENT: ""
+          K6_HTTP_DEBUG: ""
+          K6_VUS_MAX: ""
+          K6_SYSTEM_TAGS: ""
+          K6_SETUP_TIMEOUT: ""
+          K6_TEARDOWN_TIMEOUT: ""
+          K6_DISCARD_RESPONSE_BODIES: ""
+          K6_MIN_ITERATION_DURATION: ""
+          K6_HOSTNAME: ""
+        pipeline:
+          pods:
+          - from: params.pods.default
+            containers:
+            - name: k6
+              from: params.containers.xlarge
+              image: aroq/testline:0.1.4
+              actions:
+              - from: .params.actions.Commands.default.execute
+                actions:
+                - ${context.env.CMD}
