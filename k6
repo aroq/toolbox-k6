@@ -36,8 +36,8 @@ parameters:
   default: ""
 - name: K6_THROW
   default: ""
-- name: K6_BLACKLIST_IPS
-  default: ""
+# - name: K6_BLACKLIST_IPS
+  # default: ""
 - name: K6_SUMMARY_TREND_STATS
   default: ""
 - name: K6_USER_AGENT
