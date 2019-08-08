@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-.toolbox/core/run make -s .toolbox/tools/k6/k6 -- $@
+if [[ -d tools/k6 ]]; then
+  TOOL_PATH="tools/k6/k6"
+else
+  TOOL_PATH=".toolbox/tools/k6/k6"
+fi
+
+.toolbox/core/run make -s "${TOOL_PATH}" -- $@
