@@ -4,11 +4,8 @@
 import: github.com/aroq/variant-lib?ref=v0.5.9//tasks.yaml
 
 bindParamsFromEnv: true
-autoenv: true
 
 parameters:
-- name: K6_HOSTNAME
-  default: www.google.com
 - name: K6_VUS
   default: ""
 - name: K6_DURATION
@@ -56,8 +53,41 @@ parameters:
 - name: K6_MIN_ITERATION_DURATION
   default: ""
 
-steps:
-- task: tools.k6.exec
-  arguments:
-    cmd: run .toolbox/tools/k6/scripts/smoke.js
+tasks:
+  en:
+    bindParamsFromEnv: true
+    parameters:
+    - name: K6_HOSTNAME
+      default: www.google.com
+    tasks:
+      smoke:
+        autoenv: true
+        steps:
+        - task: tools.k6.exec
+          arguments:
+            cmd: run tools/k6/scripts/smoke.en.js
+      perf:
+        autoenv: true
+        steps:
+        - task: tools.k6.exec
+          arguments:
+            cmd: run tools/k6/scripts/perf.en.js
+  fr:
+    bindParamsFromEnv: true
+    parameters:
+    - name: K6_HOSTNAME
+      default: www.google.fr
 
+    tasks:
+      smoke:
+        autoenv: true
+        steps:
+        - task: tools.k6.exec
+          arguments:
+            cmd: run tools/k6/scripts/smoke.fr.js
+      perf:
+        autoenv: true
+        steps:
+        - task: tools.k6.exec
+          arguments:
+            cmd: run tools/k6/scripts/perf.fr.js

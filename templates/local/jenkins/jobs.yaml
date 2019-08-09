@@ -1,0 +1,36 @@
+from:
+- /.toolbox/tools/k6/jenkins/params.jobs.yaml
+
+# Jobs definitions.
+jobs:
+  k6:
+    jobs:
+      fr:
+        jobs:
+          smoke:
+            from: params.jobs.k6.project.desktop.fr|override
+            parameters:
+              CMD: tools/k6/k6 fr smoke
+          perf:
+            from: params.jobs.k6.project.desktop.fr|override
+            parameters:
+              CMD: tools/k6/k6 fr perf
+      en:
+        jobs:
+          home:
+            from: params.jobs.k6.project.desktop.en|override
+            parameters:
+              CMD: tools/k6/k6 en smoke
+          perf:
+            from: params.jobs.k6.project.desktop.en|override
+            parameters:
+              CMD: tools/k6/k6 en perf
+params:
+  # Jobs parameters.
+  jobs:
+    k6:
+      project:
+        params:
+          parameters:
+            K6_VUS: "10"
+            K6_DURATION: "60s"

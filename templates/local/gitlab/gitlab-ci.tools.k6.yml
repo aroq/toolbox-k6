@@ -1,0 +1,17 @@
+# k6.docker.smoke:
+  # extends: .k6.docker
+  # variables:
+    # TEST_NAME: default smoke
+    # K6_VUS: 4
+    # K6_DURATION: 60s
+  # only:
+    # - master
+
+k6.shell.smoke:
+  extends: .k6.shell
+  variables:
+    TEST_NAME: default smoke
+    # K6_VUS: 4
+    # K6_DURATION: 60s
+  only:
+    - master
