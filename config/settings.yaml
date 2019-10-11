@@ -2,6 +2,7 @@ config:
   libraries:
     k6:
       params:
+        name: k6
         source: github.com/aroq/toolbox-k6
         image: aroq/toolbox-k6
       commands:
